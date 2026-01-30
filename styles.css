@@ -1,0 +1,152 @@
+/* ===================== RESET & VARIABLES ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --clr-bg-dark: #0a0a0a;
+  --clr-bg-light: #1e1e1e;
+  --clr-text: #ffffff;
+  --clr-muted: #aaaaaa;
+  --clr-accent: #ff7600;
+  --clr-accent-light: #ff9c3f;
+  --font-main: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  color: var(--clr-text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+
+  /* Aangepaste rustige achtergrond */
+  background: radial-gradient(circle at top, #0b0b0b 0%, #1a1a1a 100%);
+  background-attachment: fixed;
+}
+
+/* Subtiele sterren */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url('https://cdn.pixabay.com/photo/2012/05/07/18/46/star-48870_1280.png') repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+img { max-width: 100%; display: block; border-radius: 12px; }
+
+/* ===================== GRID LAYOUT ===================== */
+.main-grid { display: grid; gap: 2em; padding: 1em; backdrop-filter: blur(4px); }
+
+/* ===================== HEADER ===================== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,10,0.8);
+  z-index: 100;
+}
+
+.logo { width: 75px; }
+.nav { display: flex; gap: 2em; }
+.nav__link {
+  color: var(--clr-text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--clr-accent);
+  transition: 0.3s;
+}
+.nav__link:hover::after { width: 100%; }
+
+/* ===================== MAIN SECTIONS ===================== */
+.section {
+  margin-bottom: 4em;
+  padding: 2em;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,118,0,0.2);
+}
+
+.title {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  margin: 0.2em 0;
+  text-shadow: 0 0 10px #ff7600;
+}
+.subtitle { color: var(--clr-muted); font-size: 1.3rem; margin-bottom: 1em; }
+.description { max-width: 65ch; margin-bottom: 1.5em; }
+
+/* ===================== BUTTON ===================== */
+.btn {
+  background: transparent;
+  border: 2px solid var(--clr-accent);
+  color: var(--clr-text);
+  padding: 0.8em 2em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 6px;
+}
+.btn:hover { background: var(--clr-accent); color: #000; transform: translateY(-2px); }
+
+/* ===================== DATA GRID ===================== */
+.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5em; margin-top: 1.5em; }
+.data-card {
+  background: rgba(255,255,255,0.05);
+  padding: 1.5em;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s, background 0.3s;
+  color: var(--clr-text);
+  box-shadow: 0 0 10px rgba(255,118,0,0.2);
+}
+.data-card span { display: block; margin-top: 0.5em; color: var(--clr-muted); }
+.data-card:hover { transform: translateY(-5px); background: rgba(255,118,0,0.3); color: #000; }
+
+/* ===================== LEERLINGEN ===================== */
+.students { display: flex; gap: 1.5em; flex-wrap: wrap; margin-top: 1em; }
+.student-card {
+  border: 2px solid var(--clr-accent);
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+.student-card:hover { background: var(--clr-accent); color: #000; transform: translateY(-3px); }
+
+/* ===================== FOOTER ===================== */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 1.5em 0;
+  text-align: center;
+  color: var(--clr-muted);
+}
+.socials { display: flex; justify-content: center; gap: 1.5em; margin-top: 0.8em; }
+.socials img { width: 28px; opacity: 0.8; transition: 0.3s; }
+.socials img:hover { opacity: 1; }
+
+/* ===================== CHART ===================== */
+#asgardChart { background: rgba(0,0,0,0.7); border-radius: 12px; padding: 1em; margin-top: 2em; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (min-width: 900px) {
+  .main-grid { grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(20rem, 35rem)) minmax(2em, 1fr); }
+  .header, .content, .footer { grid-column: 2 / 4; }
+}

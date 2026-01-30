@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Asgard</title>
+  <link rel="icon" type="image/png" href="/asgard/logo_asgard-removebg-preview.png">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="main-grid">
+
+    <!-- HEADER -->
+    <header class="header">
+      <img src="logo_asgard-removebg-preview.png" alt="Asgard logo" class="logo" />
+      <nav class="nav">
+        <a href="#mission" class="nav__link">Asgard</a>
+        <a href="#data" class="nav__link">Data</a>
+        <a href="#school" class="nav__link">Richtpunt</a>
+        <a href="#students" class="nav__link">Leerlingen</a>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <!-- ASGARD MISSIE -->
+      <section class="section" id="mission">
+        <h1 class="title">Asgard Mission</h1>
+        <p class="subtitle">Near Space Balloon Project</p>
+        <img src="pixasquare-4ojhpgKpS68-unsplash.jpg" alt="Balloon in sky" class="hero-image" />
+        <p class="description">
+          Project Asgard is een wetenschappelijke missie waarbij we met een grote ballon boven de atmosfeer gaan. 
+          Tijdens de vlucht verzamelen we data zoals temperatuur, luchtdruk, GPS-locatie en hoogte. 
+          Deze gegevens worden na de landing uitgelezen en hier gepresenteerd.
+        </p>
+        <button src="https://esero.be/nl/asgard-spacepole-inspiring-projects/" class="btn">Meer over de missie</button>
+      </section>
+
+      <!-- UITGELEZEN DATA -->
+      <section class="section" id="data">
+        <h2 class="section-title">Uitgelezen Data</h2>
+        <p class="description">
+          Tijdens de vlucht meet onze sonde verschillende waarden. Deze data helpt ons begrijpen hoe de omstandigheden veranderen naarmate we hoger gaan in de atmosfeer.
+        </p>
+
+        <div class="data-grid">
+          <div class="data-card">🌡️<span>Temperatuur</span></div>
+          <div class="data-card">🎈<span>Hoogte</span></div>
+          <div class="data-card">🌬️<span>Luchtdruk</span></div>
+          <div class="data-card">📍<span>GPS-locatie</span></div>
+        </div>
+
+        <!-- Grafiek -->
+        <h3 class="section-subtitle">Live Data Grafiek</h3>
+        <canvas id="asgardChart" height="200"></canvas>
+      </section>
+
+      <!-- SCHOOL -->
+      <section class="section" id="school">
+        <h2 class="section-title">Richtpunt Campus Zottegem</h2>
+        <p class="description">
+          Dit project werd gerealiseerd binnen Richtpunt Campus Zottegem. 
+          De school focust sterk op STEM, technologie en praktijkgericht leren, 
+          wat dit soort innovatieve projecten mogelijk maakt.
+        </p>
+        <img src="andrea-davis-yi8JorcxASc-unsplash.jpg" alt="School" class="school-image" />
+      </section>
+
+      <!-- LEERLINGEN -->
+      <section class="section" id="students">
+        <h2 class="section-title">Leerlingen</h2>
+        <p class="description">Ons team dat deze missie mogelijk maakte:</p>
+        <div class="students">
+          <div class="student-card">Xyan</div>
+          <div class="student-card">Xeno</div>
+          <div class="student-card">Thomas</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 Project Asgard | Richtpunt Campus Zottegem</p>
+      <div class="socials">
+        <a href="#" aria-label="Snapchat"><img src="Snapchat-Ghost-Outlined-Logo.wine.svg" alt="Snapchat" /></a>
+        <a href="#" aria-label="Airbnb"><img src="airbnb.svg" alt="Airbnb" /></a>
+        <a href="#" aria-label="Instagram"><img src="Instagram-Glyph-Black-Logo.wine.svg" alt="Instagram" /></a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ===================== CHART.JS SCRIPT ===================== -->
+  <script>
+    const data = {
+      labels: ["0 km", "5 km", "10 km", "15 km", "20 km", "25 km", "30 km"],
+      datasets: [
+        {
+          label: "Temperatuur (°C)",
+          data: [15, 5, -10, -25, -40, -50, -55],
+          borderColor: "#ff7600",
+          backgroundColor: "rgba(255,118,0,0.2)",
+          tension: 0.3,
+        },
+        {
+          label: "Luchtdruk (hPa)",
+          data: [1013, 540, 265, 120, 55, 25, 12],
+          borderColor: "#00bfff",
+          backgroundColor: "rgba(0,191,255,0.2)",
+          tension: 0.3,
+        },
+        {
+          label: "Hoogte (km)",
+          data: [0, 5, 10, 15, 20, 25, 30],
+          borderColor: "#adff2f",
+          backgroundColor: "rgba(173,255,47,0.2)",
+          tension: 0.3,
+        }
+      ]
+    };
+
+    const config = {
+      type: "line",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: "#fff" } },
+          title: { display: true, text: "Asgard Missie: Data Overzicht", color: "#ff7600", font: { size: 18 } }
+        },
+        scales: {
+          x: { ticks: { color: "#fff" }, grid: { color: "rgba(255,255,255,0.1)" } },
+          y: { ticks: { color: "#fff" }, grid: { color: "rgba(255,255,255,0.1)" } }
+        }
+      }
+    };
+
+    new Chart(document.getElementById("asgardChart"), config);
+  </script>
+</body>
+</html>
